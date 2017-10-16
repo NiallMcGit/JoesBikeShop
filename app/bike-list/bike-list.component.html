@@ -1,0 +1,54 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+  <h1>Joes Boke Shop</h1>
+  </div>
+  <div class='panel-body'>
+
+      <div class='row'>
+        <div id="checkBox" class='col-md-6'>
+          <h2>Filtered by: </h2>
+          <div id="checkbox"><label for="mens">Mens</label>
+            <input type="checkbox" id="mens" name="mens" [(ngModel)]='mens'>
+            <label for="womens">Womens</label>
+            <input type="checkbox" id="womens" name="womens"  [(ngModel)]='womens'>
+            <label for="kids">Kids</label>
+            <input type="checkbox" id="kids" name="kids"  [(ngModel)]='kids'></div>
+
+        </div>
+      </div>
+      <div class='table-responsive'>
+          <table class='table' *ngIf='products && products.length'>
+              <thead>
+                  <tr>
+                      <th>
+                          <button class='btn btn-primary' (click) = 'toggleImage()'>
+                              {{showImage ? 'Hide' : 'Show' }} Image
+                          </button>
+                      </th>
+                      <th>Product</th>
+                      <th>Code</th>
+                      <th>Available</th>
+                      <th>Catagory</th>
+                      <th>Price</th>
+                      <th>5 Star Rating</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor='let product of products'>
+                  <td><img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName' [style.width.px]='imageWidth'
+                      [style.margin.px]='imageMargin' /></td>
+                  <td>{{product.bikeName}}</td>
+                  <td>{{product.bikeCode}}</td>
+                  <td>{{product.releaseDate}}</td>
+                  <td>{{product.category}}</td>
+                  <td>{{product.price | currency: 'EUR' :true:'1.2-2'}}</td>
+                  <td>{{product.starRating}}</td>
+
+                </tr>
+
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
